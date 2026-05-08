@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="library-outline" style="margin-right:6px;vertical-align:middle"></ion-icon>
+      BookShelf
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirmarLogout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Bienvenida -->
+  <ion-card class="welcome-card">
+    <ion-card-content>
+      <div class="welcome-row">
+        <div>
+          <h2>¡Hola, lector! 👋</h2>
+          <p>{{ usuario?.email }}</p>
+        </div>
+        <ion-icon name="book-outline" color="primary" style="font-size:48px"></ion-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Destacados -->
+  <div class="section-header ion-padding-horizontal">
+    <h3>Categorías destacadas</h3>
+  </div>
+
+  <div class="categories-scroll">
+    <ion-card class="cat-card" (click)="irCatalogo('fiction')">
+      <ion-card-content>
+        <ion-icon name="book-outline" color="primary"></ion-icon>
+        <p>Ficción</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="cat-card" (click)="irCatalogo('science')">
+      <ion-card-content>
+        <ion-icon name="flask-outline" color="success"></ion-icon>
+        <p>Ciencia</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="cat-card" (click)="irCatalogo('history')">
+      <ion-card-content>
+        <ion-icon name="time-outline" color="warning"></ion-icon>
+        <p>Historia</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="cat-card" (click)="irCatalogo('philosophy')">
+      <ion-card-content>
+        <ion-icon name="bulb-outline" color="tertiary"></ion-icon>
+        <p>Filosofía</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="cat-card" (click)="irCatalogo('technology')">
+      <ion-card-content>
+        <ion-icon name="laptop-outline" color="danger"></ion-icon>
+        <p>Tecnología</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Libros populares -->
+  <div class="section-header ion-padding-horizontal ion-margin-top">
+    <h3>Libros populares</h3>
+    <ion-button fill="clear" size="small" (click)="irCatalogo('')">Ver todos</ion-button>
+  </div>
+
+  <div *ngIf="cargando" class="loading-center">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+  </div>
+
+  <div *ngIf="errorMsg" class="error-center ion-padding">
+    <ion-icon name="alert-circle-outline" color="danger" style="font-size:40px"></ion-icon>
+    <p>{{ errorMsg }}</p>
+    <ion-button size="small" (click)="cargarLibros()">Reintentar</ion-button>
+  </div>
+
+  <ion-list *ngIf="!cargando && !errorMsg">
+    <ion-item *ngFor="let libro of librosPopulares" button (click)="verDetalle(libro.key)" detail>
+      <ion-icon name="book-outline" slot="start" color="primary"></ion-icon>
+      <ion-label>
+        <h2>{{ libro.title }}</h2>
+        <p>{{ libro.author_name?.[0] ?? 'Autor desconocido' }}</p>
+        <p>{{ libro.first_publish_year ?? '' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

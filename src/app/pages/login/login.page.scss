@@ -1,0 +1,19 @@
+.login-logo {
+  text-align: center;
+  padding: 32px 0 12px;
+
+  ion-icon {
+    font-size: 72px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 8px 0 4px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 0.95rem;
+  }
+}

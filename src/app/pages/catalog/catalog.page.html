@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Catálogo de Libros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar
+    [(ngModel)]="terminoBusqueda"
+    placeholder="Buscar título, autor..."
+    debounce="500"
+    (ionChange)="buscar()"
+    [showClearButton]="'focus'"
+    animated>
+  </ion-searchbar>
+
+  <!-- Loading -->
+  <div *ngIf="cargando" class="center-state">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Buscando libros...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="!cargando && errorMsg" class="center-state">
+    <ion-icon name="alert-circle-outline" color="danger"></ion-icon>
+    <p>{{ errorMsg }}</p>
+    <ion-button size="small" (click)="buscar()">Reintentar</ion-button>
+  </div>
+
+  <!-- Resultados -->
+  <ion-list *ngIf="!cargando && libros.length > 0">
+    <ion-item *ngFor="let libro of libros" button (click)="verDetalle(libro.key)" detail>
+      <ion-thumbnail slot="start">
+        <img [src]="getPortada(libro)" [alt]="libro.title" (error)="$any($event.target).src='assets/icon/favicon.png'" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ libro.title }}</h2>
+        <p>{{ libro.author_name?.[0] ?? 'Autor desconocido' }}</p>
+        <p *ngIf="libro.first_publish_year">
+          <ion-icon name="calendar-outline" style="font-size:12px;margin-right:2px"></ion-icon>
+          {{ libro.first_publish_year }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Vacío inicial -->
+  <div *ngIf="!cargando && !errorMsg && libros.length === 0" class="center-state">
+    <ion-icon name="book-outline" color="medium"></ion-icon>
+    <p>Busca un libro para empezar</p>
+  </div>
+
+</ion-content>

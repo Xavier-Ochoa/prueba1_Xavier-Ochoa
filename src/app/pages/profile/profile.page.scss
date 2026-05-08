@@ -1,0 +1,97 @@
+.cv-container {
+  padding-bottom: 32px;
+}
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 16px;
+  background: var(--ion-color-primary);
+  color: white;
+
+  .foto-perfil {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin: 0 0 4px;
+    opacity: 0.9;
+    text-align: center;
+  }
+
+  .carrera {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin: 0 0 4px;
+    text-align: center;
+  }
+
+  .correo {
+    font-size: 0.8rem;
+    opacity: 0.75;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+// Tarjetas de habilidades
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  span {
+    background: var(--ion-color-primary-tint);
+    color: var(--ion-color-primary-shade);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+}
+
+// Secciones de experiencia
+.experiencia {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ion-color-light);
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 0.85rem;
+    margin: 0 0 2px;
+  }
+
+  small {
+    font-size: 0.78rem;
+    color: var(--ion-color-medium);
+  }
+}

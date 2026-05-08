@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>BookShelf</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="login-logo">
+    <ion-icon name="library-outline" color="primary"></ion-icon>
+    <h2>BookShelf</h2>
+    <p>Tu biblioteca digital personal</p>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Iniciar Sesión</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-icon name="mail-outline" slot="start" color="medium"></ion-icon>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input type="email" [(ngModel)]="email" placeholder="tu@correo.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="password"></ion-input>
+        <ion-button slot="end" fill="clear" (click)="togglePassword()">
+          <ion-icon [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'" color="medium"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-text [color]="tipoMensaje" *ngIf="mensaje" class="ion-padding-top">
+        <p class="ion-padding-start">{{ mensaje }}</p>
+      </ion-text>
+
+      <ion-button expand="block" class="ion-margin-top" (click)="login()" [disabled]="cargando">
+        <ion-spinner name="crescent" *ngIf="cargando" slot="start"></ion-spinner>
+        <ion-icon name="log-in-outline" slot="start" *ngIf="!cargando"></ion-icon>
+        Iniciar Sesión
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" routerLink="/register" class="ion-margin-top">
+        ¿No tienes cuenta? Regístrate
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

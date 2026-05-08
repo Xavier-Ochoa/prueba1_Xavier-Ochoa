@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/catalog"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del libro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorito()">
+        <ion-icon [name]="favorito ? 'heart' : 'heart-outline'" [color]="favorito ? 'danger' : 'light'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Loading -->
+  <div *ngIf="cargando" class="center-state">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Cargando información del libro...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="!cargando && errorMsg" class="center-state">
+    <ion-icon name="alert-circle-outline" color="danger"></ion-icon>
+    <p>{{ errorMsg }}</p>
+  </div>
+
+  <!-- Contenido -->
+  <div *ngIf="!cargando && !errorMsg && libro">
+
+    <!-- Portada + título -->
+    <div class="book-hero">
+      <img [src]="getPortada()" [alt]="libro.title" class="book-cover" (error)="$any($event.target).src='assets/icon/favicon.png'" />
+      <h1>{{ libro.title }}</h1>
+      <p *ngIf="libro.subtitle" class="subtitle">{{ libro.subtitle }}</p>
+    </div>
+
+    <!-- Info general -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Información</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item *ngIf="libro.first_publish_date">
+            <ion-icon name="calendar-outline" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <p>Publicado</p>
+              <h3>{{ libro.first_publish_date }}</h3>
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="libro.subjects?.length">
+            <ion-icon name="library-outline" slot="start" color="success"></ion-icon>
+            <ion-label>
+              <p>Géneros</p>
+              <div class="chips-row">
+                <ion-chip *ngFor="let s of libro.subjects?.slice(0,4)" color="primary" outline>{{ s }}</ion-chip>
+              </div>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Descripción -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Descripción</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ getDescripcion() }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>

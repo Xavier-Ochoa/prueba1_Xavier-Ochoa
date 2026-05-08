@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crear Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="register-logo">
+    <ion-icon name="person-add-outline" color="primary"></ion-icon>
+    <h2>Únete a BookShelf</h2>
+    <p>Crea tu cuenta para explorar miles de libros</p>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-icon name="mail-outline" slot="start" color="medium"></ion-icon>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input type="email" [(ngModel)]="email" placeholder="tu@correo.com"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="password"></ion-input>
+        <ion-button slot="end" fill="clear" (click)="togglePassword()">
+          <ion-icon [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'" color="medium"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+        <ion-label position="floating">Confirmar contraseña</ion-label>
+        <ion-input [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="confirmPassword"></ion-input>
+      </ion-item>
+
+      <ion-text [color]="tipoMensaje" *ngIf="mensaje" class="ion-padding-top">
+        <p class="ion-padding-start">{{ mensaje }}</p>
+      </ion-text>
+
+      <ion-button expand="block" class="ion-margin-top" (click)="register()" [disabled]="cargando">
+        <ion-spinner name="crescent" *ngIf="cargando" slot="start"></ion-spinner>
+        <ion-icon name="person-add-outline" slot="start" *ngIf="!cargando"></ion-icon>
+        Crear Cuenta
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" routerLink="/login" class="ion-margin-top">
+        ¿Ya tienes cuenta? Inicia sesión
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="camera-outline" style="vertical-align:middle;margin-right:6px"></ion-icon>
+      Cámara
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+
+  <!-- Área de preview de última foto -->
+  <div class="preview-area">
+    <div *ngIf="ultimaFotoPath; else sinFoto" class="preview-container">
+      <img [src]="ultimaFotoPath" class="preview-img" alt="Última foto tomada" />
+      <p class="preview-label">Última foto capturada</p>
+    </div>
+
+    <ng-template #sinFoto>
+      <div class="camera-placeholder">
+        <ion-icon name="camera-outline" color="medium"></ion-icon>
+        <p>Presiona el botón para tomar una foto</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Estadística -->
+  <ion-card class="stats-card">
+    <ion-card-content>
+      <div class="stats-row">
+        <div class="stat-item">
+          <ion-icon name="image-outline" color="primary"></ion-icon>
+          <span class="stat-number">{{ totalFotos }}</span>
+          <span class="stat-label">fotos guardadas</span>
+        </div>
+      </div>
+      <p class="stats-hint" *ngIf="totalFotos > 0">
+        Ve a la pestaña <strong>Galería</strong> para ver todas tus fotos
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón principal de cámara -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="tomarFoto()" [disabled]="tomando" color="primary">
+      <ion-spinner *ngIf="tomando" name="crescent"></ion-spinner>
+      <ion-icon *ngIf="!tomando" name="camera-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

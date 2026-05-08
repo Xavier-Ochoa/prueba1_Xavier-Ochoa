@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Hoja de Vida</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirmarLogout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="cv-container">
+
+    <!-- PERFIL -->
+    <div class="perfil">
+      <img
+        src="assets/img/mi-foto.jpg"
+        alt="Foto perfil"
+        class="foto-perfil"
+      >
+      <h1>Luis Xavier Ochoa Calle</h1>
+      <h2>Estudiante de la ESFOT - EPN</h2>
+      <p class="carrera">
+        Carrera de Desarrollo de Software
+      </p>
+      <p class="correo">
+        {{ usuario?.email }}
+      </p>
+    </div>
+
+    <!-- SOBRE MI -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Perfil Profesional</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Estudiante de Desarrollo de Software con conocimientos en
+        desarrollo web, bases de datos y programación orientada a objetos.
+        Interesado en seguir fortaleciendo habilidades en tecnologías
+        frontend y backend.
+      </ion-card-content>
+    </ion-card>
+
+    <!-- HABILIDADES -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Habilidades Técnicas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="skills">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>React</span>
+          <span>Python</span>
+          <span>Java</span>
+          <span>MySQL</span>
+          <span>Mongo Atlas</span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- EXPERIENCIA -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Experiencia</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="experiencia">
+          <h3>Prácticas Comunitarias</h3>
+          <p>Escuela Transito Amaguaña</p>
+          <small>Apoyo tecnológico y mantenimiento básico de equipos.</small>
+        </div>
+        <div class="experiencia">
+          <h3>Prácticas Profesionales</h3>
+          <p>Rastro - Municipio de Quito</p>
+          <small>Desarrollo y soporte de sistemas internos.</small>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- EDUCACION -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Educación</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>Escuela Politécnica Nacional - ESFOT</h3>
+        <p>Tecnología Superior en Desarrollo de Software</p>
+        <br>
+        <h3>Bachillerato</h3>
+        <p>Unidad Educativa Ejemplo</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- CONTACTO -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Contacto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Teléfono:</strong> 0999999999</p>
+        <p><strong>Ciudad:</strong> Quito, Ecuador</p>
+        <p><strong>Email:</strong> {{ usuario?.email }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>
